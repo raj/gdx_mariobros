@@ -28,6 +28,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.rajdeenoo.mariobros.MarioBros;
 import com.rajdeenoo.mariobros.Scenes.Hud;
+import com.rajdeenoo.mariobros.Sprites.Goomba;
 import com.rajdeenoo.mariobros.Sprites.Mario;
 import com.rajdeenoo.mariobros.Tools.B2WorldCreator;
 import com.rajdeenoo.mariobros.Tools.WorldContactListener;
@@ -57,6 +58,9 @@ public class PlayScreen implements Screen{
 
     // Sprites
     private Mario player;
+
+    private Goomba goomba;
+
 
     private Music music;
 
@@ -97,6 +101,8 @@ public class PlayScreen implements Screen{
         music.setLooping(true);
         music.play();
 
+        goomba = new Goomba(this, .32f, .32f);
+
     }
 
     public TextureAtlas getAtlas() {
@@ -127,6 +133,7 @@ public class PlayScreen implements Screen{
         world.step(1/60f,6,2);
 
         player.update(dt);
+        goomba.update(dt);
         hud.update(dt);
 
         // attach our gamecam to our players.x coordinates
@@ -156,6 +163,7 @@ public class PlayScreen implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
+        goomba.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
