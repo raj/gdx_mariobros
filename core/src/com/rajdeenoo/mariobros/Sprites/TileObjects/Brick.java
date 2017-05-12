@@ -1,4 +1,4 @@
-package com.rajdeenoo.mariobros.Sprites.Items;
+package com.rajdeenoo.mariobros.Sprites.TileObjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
