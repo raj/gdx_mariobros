@@ -1,13 +1,12 @@
-package com.rajdeenoo.mariobros.Sprites;
+package com.rajdeenoo.mariobros.Sprites.Items;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.physics.box2d.World;
 import com.rajdeenoo.mariobros.MarioBros;
 import com.rajdeenoo.mariobros.Scenes.Hud;
 import com.rajdeenoo.mariobros.Screens.PlayScreen;
+import com.rajdeenoo.mariobros.Sprites.TileObjects.InteractiveTileObject;
 
 /**
  * Created by raj on 01/05/2017.

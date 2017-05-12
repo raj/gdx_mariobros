@@ -1,4 +1,4 @@
-package com.rajdeenoo.mariobros.Sprites;
+package com.rajdeenoo.mariobros.Sprites.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -16,7 +16,7 @@ import com.rajdeenoo.mariobros.Screens.PlayScreen;
  * Created by raj on 07/05/2017.
  */
 
-public class Goomba extends Enemy {
+public class Goomba extends com.rajdeenoo.mariobros.Sprites.Enemies.Enemy {
     private float stateTime;
     private Animation walkAnimation;
     private Array<TextureRegion> frames;

@@ -7,12 +7,8 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.rajdeenoo.mariobros.MarioBros;
-import com.rajdeenoo.mariobros.Sprites.Enemy;
-import com.rajdeenoo.mariobros.Sprites.InteractiveTileObject;
-import com.rajdeenoo.mariobros.Sprites.Mario;
-
-import java.awt.event.ContainerEvent;
-import java.awt.event.ContainerListener;
+import com.rajdeenoo.mariobros.Sprites.Enemies.Enemy;
+import com.rajdeenoo.mariobros.Sprites.TileObjects.InteractiveTileObject;
 
 /**
  * Created by raj on 01/05/2017.
