@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.rajdeenoo.mariobros.MarioBros;
 import com.rajdeenoo.mariobros.Sprites.Enemy;
 import com.rajdeenoo.mariobros.Sprites.InteractiveTileObject;
+import com.rajdeenoo.mariobros.Sprites.Mario;
 
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
@@ -40,15 +41,25 @@ public class WorldContactListener implements ContactListener {
             case MarioBros.ENEMY_HEAD_BIT | MarioBros.MARIO_BIT:
                 if(fixA.getFilterData().categoryBits == MarioBros.ENEMY_HEAD_BIT)
                     ((Enemy)fixA.getUserData()).hitOnHead();
-                if(fixB.getFilterData().categoryBits == MarioBros.ENEMY_HEAD_BIT)
+                else
                     ((Enemy)fixB.getUserData()).hitOnHead();
+                break;
+            case MarioBros.ENEMY_BIT | MarioBros.OBJECT_BIT:
+                if(fixA.getFilterData().categoryBits == MarioBros.ENEMY_BIT)
+                    ((Enemy)fixA.getUserData()).reverseVelocity(true,false);
+                else
+                    ((Enemy)fixB.getUserData()).reverseVelocity(true,false);
+                break;
+            case MarioBros.MARIO_BIT | MarioBros.ENEMY_BIT:
+                Gdx.app.log("MARIO", "DIED");
 
         }
     }
 
     @Override
     public void endContact(Contact contact) {
-        Gdx.app.log("End contact","");
+
+        //Gdx.app.log("End contact","");
     }
 
     @Override
