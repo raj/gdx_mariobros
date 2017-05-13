@@ -40,16 +40,22 @@ public class Mario extends Sprite {
         stateTimer = 0;
         runningRight = true;
         Array<TextureRegion> frames = new Array<TextureRegion>();
-        for(int i = 1; i < 4;i++)
-            frames.add(new TextureRegion(getTexture(), i * 16,0,16,16));
+
+
+        //get run animation frames and add them to marioRun Animation
+        for(int i = 1; i < 4; i++)
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("little_mario"), i * 16, 0, 16, 16));
         marioRun = new Animation(0.1f, frames);
+
+        frames.clear();
+
 
         for(int i = 4; i < 6;i++)
             frames.add(new TextureRegion(getTexture(), i * 16,0,16,16));
         marioJump = new Animation(0.1f, frames);
 
 
-        marioStand = new TextureRegion(getTexture(),0,0,16,16);
+        marioStand = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 0, 0, 16, 16);
         defineMario();
         setBounds(0,0,16/MarioBros.PPM,16/MarioBros.PPM);
         setRegion(marioStand);

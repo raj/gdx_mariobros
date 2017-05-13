@@ -13,14 +13,20 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.rajdeenoo.mariobros.MarioBros;
 import com.rajdeenoo.mariobros.Scenes.Hud;
 import com.rajdeenoo.mariobros.Sprites.Enemies.Enemy;
+import com.rajdeenoo.mariobros.Sprites.Items.Item;
+import com.rajdeenoo.mariobros.Sprites.Items.ItemDef;
+import com.rajdeenoo.mariobros.Sprites.Items.Mushroom;
 import com.rajdeenoo.mariobros.Sprites.Mario;
 import com.rajdeenoo.mariobros.Tools.B2WorldCreator;
 import com.rajdeenoo.mariobros.Tools.WorldContactListener;
+
+import java.util.PriorityQueue;
 
 /**
  * Created by raj on 01/05/2017.
@@ -51,6 +57,9 @@ public class PlayScreen implements Screen{
 
 
     private Music music;
+
+    private Array<Item> items;
+    private PriorityQueue<ItemDef> itemsToSpawn;
 
 
     public PlayScreen(MarioBros game) {
@@ -89,8 +98,26 @@ public class PlayScreen implements Screen{
         music.setLooping(true);
        // music.play();
 
+        items = new Array<Item>();
+        itemsToSpawn = new PriorityQueue<ItemDef>();
+
 
     }
+
+
+    public void spawnItem(ItemDef idef) {
+        itemsToSpawn.add(idef);
+    }
+
+    public void handleSpawningItems() {
+        if(!itemsToSpawn.isEmpty()) {
+            ItemDef idef = itemsToSpawn.poll();
+            if(idef.type == Mushroom.class) {
+                items.add(new Mushroom(this, idef.position.x, idef.position.y));
+            }
+        }
+    }
+
 
     public TextureAtlas getAtlas() {
         return atlas;
@@ -126,6 +153,10 @@ public class PlayScreen implements Screen{
                 enemy.b2body.setActive(true);
         }
 
+        for(Item item: items)
+            item.update(dt);
+
+
         hud.update(dt);
 
         // attach our gamecam to our players.x coordinates
@@ -157,6 +188,8 @@ public class PlayScreen implements Screen{
         player.draw(game.batch);
         for(Enemy enemy: creator.getGoombas())
             enemy.draw(game.batch);
+        for(Item item: items)
+            item.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
